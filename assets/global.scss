@@ -1,0 +1,26 @@
+$primaryTextColor: #004d40;
+
+html, body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, ui-sans-serif, 'PingFang SC', 'Segoe UI', '微软雅黑', Microsoft YaHei UI, sans-serif;
+}
+
+pre, pre code {
+  font-family: Menlo, "Cascadia Code", "Cascadia Mono", Consolas, "微软雅黑", "Microsoft YaHei UI", ui-sans-serif, monospace;
+}
+
+h1, h4, h5, h6 {
+  margin: 8px 0;
+}
+
+h2 {
+  margin: 13px 0;
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+.spacer {
+  flex: 1;
+}
