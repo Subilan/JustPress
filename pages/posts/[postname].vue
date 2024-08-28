@@ -83,14 +83,6 @@ article {
     &:hover {
       text-decoration: underline;
     }
-
-    .external-link-icon {
-      color: #aaa;
-
-      &::before {
-        font-size: .9rem;
-      }
-    }
   }
 
   code {
@@ -241,6 +233,12 @@ article {
       color: #aaa;
       padding-left: 2px;
       font-size: 85%;
+      transition: all .2s ease;
+      display: inline-block;
+    }
+
+    &:hover::after {
+      transform: translate(2.5px, -2.5px);
     }
   }
 }
