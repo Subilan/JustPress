@@ -20,15 +20,7 @@ code[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  border: 1px solid transparent;
-  transition: all .2s ease;
 }
-pre[class*="language-"]:hover {
-  border: 1px solid rgba(0, 0, 0, .1);
-  box-shadow: 0 2px 3px rgba(0, 0, 0, .2);
-  transform: translateY(-2px);
-}
-
 @media print {
   pre[class*="language-"],
   code[class*="language-"] {
