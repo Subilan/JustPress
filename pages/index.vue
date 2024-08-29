@@ -5,6 +5,7 @@
         <div class="avatar">
           <img src="~/assets/avatar.jpg" alt="avatar"/>
           <span class="name">Subilan</span>
+          <span class="bio">城市化的自我</span>
         </div>
         <div class="social">
           <a href="https://x.com/subilan1234" target="_blank">
@@ -165,7 +166,6 @@ const blogStats = [
   .avatar {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     align-items: center;
 
     img {
@@ -176,8 +176,14 @@ const blogStats = [
     }
 
     .name {
+      margin-top: 16px;
       font-weight: 500;
       font-size: 24px;
+    }
+
+    .bio {
+      margin-top: 8px;
+      font-size: 14px;
     }
   }
 
