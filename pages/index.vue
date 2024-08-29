@@ -77,6 +77,13 @@ function getIconForCategory(category) {
   border: 1px solid rgba(0, 0, 0, .1);
   border-radius: 10px;
   padding: 32px 16px;
+  transition: all .2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 0 rgba(0, 0, 0, .1);
+    border: 1px solid rgba(#004d40, .8);
+    transform: translateY(-4px);
+  }
 
   .avatar {
     display: flex;
@@ -147,7 +154,6 @@ function getIconForCategory(category) {
 
       &:not(.router-link-exact-active):hover {
         background: #e0f2f1;
-        padding: 16px 0;
 
         svg {
           color: #009688;
@@ -164,7 +170,6 @@ function getIconForCategory(category) {
     }
 
     .router-link-exact-active {
-      padding: 16px 0;
       border-radius: 20px;
       background: #e0f2f1;
 
@@ -216,15 +221,18 @@ function getIconForCategory(category) {
       font-size: 14px;
       display: flex;
       align-items: center;
+      gap: 2px;
 
       svg {
         height: 14px;
+        width: 14px;
       }
     }
 
     &:hover {
-      box-shadow: 0 4px 0 rgba(0, 0, 0, .1);
+      box-shadow: 0 6px 0 rgba(0, 0, 0, .1);
       transform: translateY(-2px);
+      border-color: rgba(#004d40, .8)
     }
 
     &:hover {
