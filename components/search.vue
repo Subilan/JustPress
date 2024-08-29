@@ -1,11 +1,11 @@
 <template>
   <transition name="opacity">
-    <div class="search-layer" v-if="model">
-      <transition name="zoom">
+    <div class="search-layer" v-if="model" @click.self="model = false">
+      <transition name="zoom" appear>
         <div class="search-modal" v-if="model">
-          <input v-model="search" type="text" @change="onChange"/>
+          <input tabindex="100" placeholder="输入标题或正文关键词" v-model="search" type="text"/>
           <div class="search-results" v-if="results.length > 0">
-            <div class="search-result" v-for="x in results" @click="navigateTo(`/posts/${x.slug}`); model = false">
+            <div @keydown.enter="navigateTo(`/posts/${x.slug}`); model = false" class="search-result" v-for="(x, i) in results" :tabindex="100+i" @click="navigateTo(`/posts/${x.slug}`); model = false">
               <h2>{{ x.title }}</h2>
               <div class="meta">
                 <span>{{ x.date }}</span>
@@ -34,6 +34,20 @@ const results = ref([]);
 
 watch(() => search.value, v => {
   results.value = getSearchContent(v);
+});
+
+function handleKeydown(e) {
+  if (e.code === 'Escape') {
+    model.value = false;
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
 })
 </script>
 
@@ -58,9 +72,14 @@ watch(() => search.value, v => {
   transition: all .2s ease;
 }
 
+.zoom-enter-active,
+.zoom-leave-active {
+  transition-delay: .2s;
+}
+
 .zoom-enter-from,
 .zoom-leave-to {
-  transform: scale(.6);
+  transform: scale(.9);
   opacity: 0;
 }
 
@@ -81,6 +100,7 @@ watch(() => search.value, v => {
   padding: 20px;
   width: 35%;
   border-radius: 10px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, .2);
 
   input {
     outline: none;
