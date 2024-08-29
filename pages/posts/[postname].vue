@@ -245,6 +245,8 @@ article {
 
 .notice {
   padding: 2px 16px;
+  margin: 16px 0;
+
   &.tip {
     background: #e0f2f1;
     border-left: 5px solid #009688;
