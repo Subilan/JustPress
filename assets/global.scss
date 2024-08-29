@@ -1,9 +1,11 @@
 $primaryTextColor: #004d40;
-$monospaceFont: Menlo, "Cascadia Code", "Cascadia Mono", Consolas, "微软雅黑", "Microsoft YaHei UI", ui-sans-serif, monospace;
+$sansSerifFontWithoutDefault: -apple-system, BlinkMacSystemFont, ui-sans-serif, 'PingFang SC', 'Segoe UI', '微软雅黑', Microsoft YaHei UI;
+$sansSerifFont: $sansSerifFontWithoutDefault, sans-serif;
+$monospaceFont: Menlo, "Cascadia Code", "Cascadia Mono", Consolas, $sansSerifFontWithoutDefault, monospace;
 
 html, body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, ui-sans-serif, 'PingFang SC', 'Segoe UI', '微软雅黑', Microsoft YaHei UI, sans-serif;
+  font-family: $sansSerifFont;
   scroll-behavior: smooth;
 }
 
