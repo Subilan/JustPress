@@ -31,13 +31,10 @@
 <script setup>
 import {pages} from "~/data/config.js";
 import {mdiArrowUp, mdiMagnify} from "@mdi/js";
+import isMacOS from "~/utils/isMacOS.js";
 
 const searchModal = ref(false);
 const showBackToTop = ref(false);
-
-function isMacOS() {
-  return window.navigator.userAgent.includes('Macintosh');
-}
 
 function scrollToTop() {
   window.scrollTo({top: 0})

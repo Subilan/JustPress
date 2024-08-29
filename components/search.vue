@@ -27,6 +27,8 @@
 </template>
 
 <script setup>
+import isMacOS from "~/utils/isMacOS.js";
+
 const search = ref('');
 const model = defineModel();
 
@@ -39,6 +41,12 @@ watch(() => search.value, v => {
 function handleKeydown(e) {
   if (e.code === 'Escape') {
     model.value = false;
+  }
+
+  if (e.code === 'KeyK') {
+    if ((isMacOS() && e.metaKey) || (!isMacOS() && e.ctrlKey)) {
+      model.value = !model.value;
+    }
   }
 }
 
