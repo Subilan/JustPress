@@ -123,7 +123,7 @@ const blogStats = [
 .stats {
   p {
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   display: flex;
@@ -137,11 +137,10 @@ const blogStats = [
 
     .prefix, .suffix {
       color: #9b9b9b;
-      font-size: 14px;
     }
 
     .value {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
       color: #004d40;
     }

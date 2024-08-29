@@ -6,7 +6,8 @@
     </span>
     <div class="search-btn" @click="searchModal = true">
       <icon :path="mdiMagnify"/>
-      搜索<client-only><span class="hotkey">{{ isMacOS() ? '⌘' : 'Ctrl'}}+K</span></client-only>
+      搜索
+      <client-only><span class="hotkey">{{ isMacOS() ? '⌘' : 'Ctrl' }}+K</span></client-only>
     </div>
     <div class="spacer"/>
     <div class="nav-links">
@@ -18,20 +19,35 @@
   <div class="default-layout">
     <slot/>
   </div>
-  <client-only>
-    <search v-model="searchModal"/>
-  </client-only>
+  <search v-model="searchModal"/>
+  <transition name="flowup">
+    <div @click="scrollToTop" class="back-to-top" v-if="showBackToTop">
+      返回顶部
+      <icon :path="mdiArrowUp"/>
+    </div>
+  </transition>
 </template>
 
 <script setup>
 import {pages} from "~/data/config.js";
-import {mdiMagnify} from "@mdi/js";
+import {mdiArrowUp, mdiMagnify} from "@mdi/js";
 
 const searchModal = ref(false);
+const showBackToTop = ref(false);
 
 function isMacOS() {
   return window.navigator.userAgent.includes('Macintosh');
 }
+
+function scrollToTop() {
+  window.scrollTo({top: 0})
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', () => {
+    showBackToTop.value = window.scrollY >= window.innerHeight * 0.8;
+  })
+})
 </script>
 
 <style lang="scss">
@@ -41,8 +57,45 @@ function isMacOS() {
 $navbarHeight: 55px;
 $navbarBottomOffset: 32px;
 
+.flowup-enter-active,
+.flowup-leave-active {
+  transition: all .2s ease;
+}
+
+.flowup-enter-from,
+.flowup-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
 .default-layout {
   margin-top: $navbarHeight + $navbarBottomOffset;
+}
+
+.back-to-top {
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 10px;
+  transition: all .2s ease;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: white;
+  position: fixed;
+  bottom: 48px;
+  right: 64px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+
+  svg {
+    height: 20px;
+  }
+
+  &:hover {
+    box-shadow: 0 6px 0 rgba(0, 0, 0, .1);
+    border: 1px solid rgba(#004d40, .8);
+    transform: translateY(-4px);
+  }
 }
 
 .nav {

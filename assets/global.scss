@@ -4,6 +4,7 @@ $monospaceFont: Menlo, "Cascadia Code", "Cascadia Mono", Consolas, "微软雅黑
 html, body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, ui-sans-serif, 'PingFang SC', 'Segoe UI', '微软雅黑', Microsoft YaHei UI, sans-serif;
+  scroll-behavior: smooth;
 }
 
 pre, pre code, input {
