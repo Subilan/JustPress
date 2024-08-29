@@ -1,34 +1,47 @@
 <template>
   <div class="index">
     <div class="left">
-      <div class="avatar">
-        <img src="~/assets/avatar.jpg" alt="avatar"/>
-        <span class="name">Subilan</span>
-      </div>
-      <div class="social">
-        <a href="https://x.com/subilan1234" target="_blank">
-          <X/>
-        </a>
-        <a href="https://github.com/Subilan" target="_blank">
-          <GitHub/>
-        </a>
-        <a href="mailto:christophersubilan@gmail.com">
-          <icon :path="mdiEmailOutline"/>
-        </a>
-        <a href="https://space.bilibili.com/35413001" target="_blank">
-          <Bilibili class="bilibili"/>
-        </a>
-      </div>
-      <div class="navigations">
-        <router-link :to="x.to" v-for="x in pages">
-          <icon :path="x.icon" class="inactive-icon"/>
-          <icon :path="x.iconActive" class="active-icon"/>
-          {{ x.name }}
-        </router-link>
-      </div>
+      <section class="profile">
+        <div class="avatar">
+          <img src="~/assets/avatar.jpg" alt="avatar"/>
+          <span class="name">Subilan</span>
+        </div>
+        <div class="social">
+          <a href="https://x.com/subilan1234" target="_blank">
+            <X/>
+          </a>
+          <a href="https://github.com/Subilan" target="_blank">
+            <GitHub/>
+          </a>
+          <a href="mailto:christophersubilan@gmail.com">
+            <icon :path="mdiEmailOutline"/>
+          </a>
+          <a href="https://space.bilibili.com/35413001" target="_blank">
+            <Bilibili class="bilibili"/>
+          </a>
+        </div>
+        <div class="navigations">
+          <router-link :to="x.to" v-for="x in pages">
+            <icon :path="x.icon" class="inactive-icon"/>
+            <icon :path="x.iconActive" class="active-icon"/>
+            {{ x.name }}
+          </router-link>
+        </div>
+        <div class="footer">
+          &copy; 2019-{{ new Date().getFullYear() }} Subilan's Blog<br/>Built with Nuxt 3
+        </div>
+      </section>
+      <section class="stats">
+        <p>截至现在，这里...</p>
+        <div class="stat" v-for="x in blogStats">
+          <span class="prefix">{{ x[0] }}</span>
+          <span class="value">{{ x[1] }}</span>
+          <span class="suffix">{{ x[2] }}</span>
+        </div>
+      </section>
     </div>
     <div class="right">
-      <div class="article" v-for="x in getPostDigests()">
+      <router-link class="article" v-for="x in getPostDigests()" :to="`/posts/${x.slug}`">
         <span class="view-right-now-message">打开 <icon :path="mdiArrowTopRight"/></span>
         <h2>{{ x.title }}</h2>
         <div class="meta">
@@ -37,7 +50,7 @@
         </div>
         <p v-if="x.desc">{{ x.desc }}</p>
         <icon size="120" class="bg-icon" v-if="x.cate" :path="getIconForCategory(x.cate)"/>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -49,15 +62,31 @@ import Bilibili from '~/assets/svg/bilibili.svg'
 import {mdiArrowTopRight, mdiArrowUpLeft, mdiCodeTags, mdiEmailOutline, mdiFormatQuoteOpen, mdiPencil} from "@mdi/js";
 import {pages} from "~/data/config.js";
 import getPostDigests from "~/utils/getPostDigests.js";
+import getTotalWordCount from "~/utils/getTotalWordCount.js";
+import getTotalPostCount from "~/utils/getTotalPostCount.js";
+import getTotalPostSize from "~/utils/getTotalPostSize.js";
+import blogrolls from '~/data/blogrolls.json';
 
 function getIconForCategory(category) {
   switch (category) {
-    case '思想': return mdiFormatQuoteOpen;
-    case '代码': return mdiCodeTags;
-    case '记录': return mdiPencil;
-    case '路径': return mdiArrowUpLeft;
+    case '思想':
+      return mdiFormatQuoteOpen;
+    case '代码':
+      return mdiCodeTags;
+    case '记录':
+      return mdiPencil;
+    case '路径':
+      return mdiArrowUpLeft;
   }
 }
+
+const blogStats = [
+  ['发布了', getTotalPostCount(), '篇文章'],
+  ['容纳了', `${(getTotalWordCount() / 1000).toFixed(1)}K`, '字'],
+  ['链接了', `${blogrolls.length}`, '位伙伴'],
+  ['存在了', (new Date().getFullYear() - 2019), '年'],
+  ['占用了', `${(getTotalPostSize() / 1000).toFixed(1)}`, 'KB']
+]
 </script>
 
 <style lang="scss" scoped>
@@ -70,19 +99,68 @@ function getIconForCategory(category) {
 }
 
 .left {
-  width: 20%;
+  width: 25%;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   flex-direction: column;
+  gap: 28px;
+}
+
+.left section {
   border: 1px solid rgba(0, 0, 0, .1);
   border-radius: 10px;
-  padding: 32px 16px;
   transition: all .2s ease;
+  padding: 16px;
+  background: white;
 
   &:hover {
     box-shadow: 0 6px 0 rgba(0, 0, 0, .1);
     border: 1px solid rgba(#004d40, .8);
     transform: translateY(-4px);
+  }
+}
+
+.stats {
+  p {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+
+    .prefix, .suffix {
+      color: #9b9b9b;
+      font-size: 14px;
+    }
+
+    .value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #004d40;
+    }
+  }
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 32px 16px 16px;
+
+
+  .footer {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+    line-height: 1.5;
   }
 
   .avatar {
@@ -196,12 +274,14 @@ function getIconForCategory(category) {
 }
 
 .right {
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   gap: 28px;
 
   .article {
+    color: unset;
+    text-decoration: none;
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(0, 0, 0, .1);

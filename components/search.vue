@@ -93,6 +93,7 @@ onUnmounted(() => {
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  z-index: 200;
 }
 
 .search-modal {

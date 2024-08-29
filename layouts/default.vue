@@ -38,12 +38,26 @@ function isMacOS() {
 @use '@/assets/global.scss';
 @use '@/assets/github-light.scss';
 
+$navbarHeight: 55px;
+$navbarBottomOffset: 32px;
+
+.default-layout {
+  margin-top: $navbarHeight + $navbarBottomOffset;
+}
+
 .nav {
   display: flex;
   align-items: center;
   background: white;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
   padding: 12px 16px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+  height: $navbarHeight;
 
   > img {
     width: 30px;
