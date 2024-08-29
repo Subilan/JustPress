@@ -1,8 +1,35 @@
-export const navigations = {
-    '首页': '/',
-    '关于': '/about',
-    '友链': '/friends',
-    '联系': '/contact',
-    'PGP': '/pgp',
-    'GitHub': 'https://github.com/Subilan'
-}
+import {
+    mdiHome,
+    mdiHomeOutline,
+    mdiInformation,
+    mdiInformationOutline, mdiKey, mdiKeyOutline,
+    mdiLinkBox,
+    mdiLinkBoxOutline
+} from "@mdi/js";
+
+export const pages = [
+    {
+        name: '首页',
+        to: '/',
+        icon: mdiHomeOutline,
+        iconActive: mdiHome
+    },
+    {
+        name: '关于',
+        to: '/pages/about',
+        icon: mdiInformationOutline,
+        iconActive: mdiInformation
+    },
+    {
+        name: '友链',
+        to: '/pages/friends',
+        icon: mdiLinkBoxOutline,
+        iconActive: mdiLinkBox
+    },
+    {
+        name: 'PGP',
+        to: '/pages/pgp',
+        icon: mdiKeyOutline,
+        iconActive: mdiKey
+    }
+]

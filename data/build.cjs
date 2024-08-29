@@ -52,6 +52,7 @@ function render(content) {
 
     const pageContents = [];
     const postContents = [];
+    const postDigests = [];
 
     for (let type of ['pages', 'posts']) {
         const filenames = await fs.readdir(`${dataDir}/${type}`);
@@ -80,6 +81,7 @@ function render(content) {
                 date: frontMatterResult.attributes.date,
                 desc: frontMatterResult.attributes.desc,
                 cate: frontMatterResult.attributes.cate,
+                hidden: frontMatterResult.attributes.hidden || false,
                 title,
                 wordCount: countWordsCJK(content)
             };
@@ -92,6 +94,15 @@ function render(content) {
 
                 case 'posts': {
                     postContents.push(res);
+
+                    postDigests.push({
+                        title: res.title,
+                        slug: res.slug,
+                        desc: res.desc,
+                        date: res.date,
+                        cate: res.cate,
+                        hidden: res.hidden,
+                    });
                     break;
                 }
             }
@@ -100,6 +111,7 @@ function render(content) {
 
     await fs.writeFile(`${dataDir}/posts.json`, JSON.stringify(postContents));
     await fs.writeFile(`${dataDir}/pages.json`, JSON.stringify(pageContents));
+    await fs.writeFile(`${dataDir}/postdigests.json`, JSON.stringify(postDigests));
 
     const end = new Date();
 

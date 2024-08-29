@@ -6,13 +6,8 @@
     </span>
     <div class="spacer"/>
     <div class="nav-links">
-      <div class="nav-link" v-for="x in Object.keys(navigations)">
-        <a class="nav-link-inner" :href="navigations[x]" target="_blank" v-if="navigations[x].startsWith('http')">
-          {{ x }}
-        </a>
-        <nuxt-link v-else class="nav-link-inner" :to="navigations[x]">
-          {{ x }}
-        </nuxt-link>
+      <div class="nav-link" v-for="x in pages">
+        <router-link :to="x.to" class="nav-link-inner">{{ x.name }}</router-link>
       </div>
     </div>
   </nav>
@@ -22,7 +17,7 @@
 </template>
 
 <script setup>
-import {navigations} from "~/data/config.js";
+import {pages} from "~/data/config.js";
 </script>
 
 <style lang="scss">
