@@ -7,6 +7,10 @@ function countWordsCJK(text) {
     return (text.match(/[\u00ff-\uffff]|\S+/g) || []).length;
 }
 
+function stripHtml(html) {
+    return html.replace(/<[^>]*>?/gm, '');
+}
+
 function render(content) {
     const md = markdownit({
         html: true,
@@ -53,6 +57,7 @@ function render(content) {
     const pageContents = [];
     const postContents = [];
     const postDigests = [];
+    const postSearch = [];
 
     for (let type of ['pages', 'posts']) {
         const filenames = await fs.readdir(`${dataDir}/${type}`);
@@ -103,6 +108,19 @@ function render(content) {
                         cate: res.cate,
                         hidden: res.hidden,
                     });
+
+                    postSearch.push({
+                        title: res.title,
+                        slug: res.slug,
+                        name: res.name,
+                        hidden: res.hidden,
+                        cate: res.cate,
+                        date: res.date,
+                        content: stripHtml(res.content),
+                        wordCount: res.wordCount,
+                        filesize: fileStat.size
+                    })
+
                     break;
                 }
             }
@@ -112,6 +130,7 @@ function render(content) {
     await fs.writeFile(`${dataDir}/posts.json`, JSON.stringify(postContents));
     await fs.writeFile(`${dataDir}/pages.json`, JSON.stringify(pageContents));
     await fs.writeFile(`${dataDir}/postdigests.json`, JSON.stringify(postDigests));
+    await fs.writeFile(`${dataDir}/postsearch.json`, JSON.stringify(postSearch));
 
     const end = new Date();
 
@@ -119,6 +138,8 @@ function render(content) {
 
     const postStat = await fs.stat(`${dataDir}/posts.json`);
     const pageStat = await fs.stat(`${dataDir}/pages.json`);
+    const postdigestsStat = await fs.stat(`${dataDir}/postdigests.json`);
+    const postsearchStat = await fs.stat(`${dataDir}/postsearch.json`);
 
-    console.log(`Size: posts.json=${postStat.size / 1000000} MB, pages.json=${pageStat.size / 1000000} MB`)
+    console.log(`Size: posts.json=${postStat.size / 1000000} MB, pages.json=${pageStat.size / 1000000} MB, postdigests.json=${postdigestsStat.size / 1000000} MB, postsearch.json=${postsearchStat.size / 1000000} MB`)
 })();

@@ -4,9 +4,9 @@
     <span class="site-title">
       <router-link to="/">Subilan's Blog</router-link>
     </span>
-    <div class="search-btn">
+    <div class="search-btn" @click="searchModal = true">
       <icon :path="mdiMagnify"/>
-      搜索<span class="hotkey">{{ isMacOS() ? '⌘' : 'Ctrl'}}+K</span>
+      搜索<client-only><span class="hotkey">{{ isMacOS() ? '⌘' : 'Ctrl'}}+K</span></client-only>
     </div>
     <div class="spacer"/>
     <div class="nav-links">
@@ -18,14 +18,19 @@
   <div class="default-layout">
     <slot/>
   </div>
+  <client-only>
+    <search v-model="searchModal"/>
+  </client-only>
 </template>
 
 <script setup>
 import {pages} from "~/data/config.js";
 import {mdiMagnify} from "@mdi/js";
 
+const searchModal = ref(false);
+
 function isMacOS() {
-  return navigator.userAgent.includes('Macintosh');
+  return window.navigator.userAgent.includes('Macintosh');
 }
 </script>
 
@@ -100,7 +105,7 @@ function isMacOS() {
   }
 
   .hotkey {
-    font-size: 12px;
+    font-size: 10px;
     color: #aaa;
   }
 
