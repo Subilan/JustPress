@@ -9,6 +9,7 @@
       </div>
       <div class="content" v-html="post.content"/>
     </article>
+    <post-footer/>
   </div>
 </template>
 
@@ -16,6 +17,7 @@
 import getPostContent from "~/utils/getPostContent.js";
 import mediumZoom from "medium-zoom";
 import {mdiClockOutline, mdiFormatTextVariant, mdiShapeOutline} from "@mdi/js";
+import PostFooter from "~/components/post-footer.vue";
 
 const slug = useRoute().params.postname;
 const post = getPostContent(slug.toLowerCase());
@@ -86,17 +88,16 @@ article {
   }
 
   code {
-    color: #476582;
+    color: #004d40;
     padding: 0.25rem 0.5rem;
     vertical-align: middle;
     margin: 0;
     font-size: .85em;
-    background-color: rgba(27, 31, 35, .05);
+    background-color: #f6f8fa;
     border-radius: 3px;
   }
 
   pre {
-    background-color: #282c34;
     border-radius: 6px;
     position: relative;
     padding: 1.25rem 1.5rem;
@@ -107,7 +108,6 @@ article {
       padding: 0;
       background: transparent;
       border-radius: 0;
-      color: #fff;
     }
   }
 
@@ -209,7 +209,7 @@ article {
   kbd {
     box-shadow: 0 1px 0 2px rgba(#009688, .2);
     padding: .05rem .3rem;
-    font-size: 95%;
+    font-size: 80%;
     margin: 0 4px;
     display: inline-block;
     transform: translateY(-2px);
@@ -228,6 +228,7 @@ article {
   }
 
   a.external-link {
+    margin-right: 3px;
     &::after {
       content: '↗';
       color: #aaa;
@@ -238,7 +239,7 @@ article {
     }
 
     &:hover::after {
-      transform: translate(2.5px, -2.5px);
+      transform: translate(2px, -2px);
     }
   }
 }

@@ -61,7 +61,7 @@ $navbarBottomOffset: 32px;
 
 .flowup-enter-from,
 .flowup-leave-to {
-  transform: translateY(10px);
+  transform: translateY(20px);
   opacity: 0;
 }
 
@@ -108,6 +108,10 @@ $navbarBottomOffset: 32px;
   box-sizing: border-box;
   z-index: 100;
   height: $navbarHeight;
+
+  @media print {
+    display: none;
+  }
 
   > img {
     width: 30px;
