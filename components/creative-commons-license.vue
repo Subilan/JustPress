@@ -12,12 +12,6 @@
       <a href="https://github.com/Subilan/Blog/issues" target="_blank">打开 Issue 页面 <icon :path="mdiArrowTopRight"/></a>
     </div>
   </div>
-  <footer>
-    <span>&copy; 2019-{{ new Date().getFullYear()}} Subilan's Blog<br/><small>Built with Nuxt 3 and 🤔</small></span>
-    <div class="spacer"/>
-    <WrittenByHuman/>
-    <img alt="creative-commons" src="https://mirrors.creativecommons.org/presskit/logos/cc.logo.svg"/>
-  </footer>
 </template>
 
 <script setup>
@@ -33,6 +27,9 @@ import {mdiArrowTopRight} from "@mdi/js";
   transition: all .2s ease;
   background: white;
   color: black;
+  box-sizing: border-box;
+  max-width: 800px;
+  margin: 0 auto;
 
   &:hover {
     border: 1px solid rgba(#004d40, .8);
@@ -83,19 +80,6 @@ import {mdiArrowTopRight} from "@mdi/js";
 
   p {
     line-height: 1.8;
-  }
-}
-
-footer {
-  margin: 32px 0;
-  padding-top: 32px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  border-top: 1px solid rgba(0, 0, 0, .1);
-
-  img, svg {
-    height: 30px;
   }
 }
 </style>
