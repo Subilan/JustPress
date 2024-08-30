@@ -23,9 +23,9 @@
           <li>非专业的摄影（对我来说，准确地叫<em>拍照</em>）爱好者，喜欢按照自己的理念进行取景。</li>
           <li>学习日语中，不过<em>并不是</em>因为二次元，是因为一样非常本真的对语言的兴趣。</li>
           <li>尝试各种编程语言，以及将各种有趣的设计原型变成现实。</li>
-          <li>有时着迷于城市轨道交通与道路规划，但不多。</li>
+          <li>有时着迷于城市轨道交通与道路规划。</li>
           <li>字体收集爱好者，喜欢了解具有创新意义或概念的字体。</li>
-          <li><em>单人</em>旅行爱好者，一些陌生的城市或者自然对我有着特别的吸引力。</li>
+          <li><em>单人</em>旅行爱好者，陌生的城市和自然对我有着特别的吸引力。</li>
         </ul>
       </details>
       <details>
@@ -47,54 +47,7 @@
 }
 
 .about-banner {
-
   object-fit: cover;
-}
-
-details {
-  border: 1px solid rgba(0, 0, 0, .1);
-  border-radius: 10px;
-  padding: 16px;
-  transition: all .2s ease;
-
-  &:hover {
-    border: 1px solid rgba(#004d40, .8);
-    transform: translateY(-4px);
-    box-shadow: 0 6px 0 rgba(0, 0, 0, .1);
-  }
-
-  summary {
-    color: #004d40;
-    cursor: pointer;
-
-    &::marker {
-      content: none;
-    }
-
-    span {
-      transition: all .2s ease;
-    }
-
-    span::before {
-      content: '→';
-      display: inline-block;
-      margin-right: 8px;
-      transition: all .2s ease;
-    }
-  }
-
-  &[open] summary span::before {
-    transform: rotate(90deg);
-  }
-
-  &[open] {
-    background: rgba(#e0f2f1, .4);
-
-    summary span {
-      font-size: 18px;
-      font-weight: bold;
-    }
-  }
 }
 </style>
 <script setup lang="ts">
