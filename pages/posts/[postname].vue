@@ -25,6 +25,10 @@ const post = getPostContent(slug.toLowerCase());
 onMounted(() => {
   mediumZoom('article .content img')
 })
+
+definePageMeta({
+  layout: 'post'
+})
 </script>
 
 <style lang="scss">
@@ -61,7 +65,7 @@ onMounted(() => {
 article {
   font-size: 16px;
   line-height: 1.8;
-  margin: 32px 0;
+  margin-bottom: 32px;
 
   ul, ol {
     padding-left: 1.2rem;

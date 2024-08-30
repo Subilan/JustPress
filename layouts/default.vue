@@ -1,92 +1,102 @@
 <template>
-  <nav class="nav">
-    <img src="~/assets/avatar.jpg" alt="avatar"/>
-    <span class="site-title">
-      <router-link to="/">Subilan's Blog</router-link>
-    </span>
-    <div class="search-btn" @click="searchModal = true">
-      <icon :path="mdiMagnify"/>
-      搜索
-      <client-only><span class="hotkey">{{ isMacOS() ? '⌘' : 'Ctrl' }}+K</span></client-only>
+  <navbar/>
+  <div class="layout-default">
+    <div class="left">
+      <section class="profile">
+        <div class="avatar">
+          <img src="~/assets/avatar.jpg" alt="avatar"/>
+          <span class="name">Subilan</span>
+          <span class="bio">城市化的自我</span>
+        </div>
+        <div class="social">
+          <a href="https://x.com/subilan1234" target="_blank">
+            <X/>
+          </a>
+          <a href="https://github.com/Subilan" target="_blank">
+            <GitHub/>
+          </a>
+          <a href="mailto:christophersubilan@gmail.com">
+            <icon :path="mdiEmailOutline"/>
+          </a>
+          <a href="https://space.bilibili.com/35413001" target="_blank">
+            <Bilibili class="bilibili"/>
+          </a>
+        </div>
+        <div class="navigations">
+          <router-link :to="x.to" v-for="x in pages">
+            <icon :path="x.icon" class="inactive-icon"/>
+            <icon :path="x.iconActive" class="active-icon"/>
+            {{ x.name }}
+          </router-link>
+        </div>
+        <div class="footer">
+          &copy; 2019-{{ new Date().getFullYear() }} Subilan's Blog<br/>Built with Nuxt 3
+        </div>
+      </section>
+      <section class="stats">
+        <p>截至现在，这里...</p>
+        <div class="stat" v-for="x in blogStats">
+          <span class="prefix">{{ x[0] }}</span>
+          <span class="value">{{ x[1] }}</span>
+          <span class="suffix">{{ x[2] }}</span>
+        </div>
+      </section>
     </div>
-    <div class="spacer"/>
-    <div class="nav-links">
-      <div class="nav-link" v-for="x in pages">
-        <router-link :to="x.to" class="nav-link-inner">{{ x.name }}</router-link>
-      </div>
+    <div class="right">
+      <slot/>
     </div>
-  </nav>
-  <div class="default-layout">
-    <slot/>
   </div>
-  <search v-model="searchModal"/>
-  <transition name="flowup">
-    <div @click="scrollToTop" class="back-to-top" v-if="showBackToTop">
-      返回顶部
-      <icon :path="mdiArrowUp"/>
-    </div>
-  </transition>
 </template>
 
 <script setup>
+import X from '~/assets/svg/x.svg';
+import GitHub from '~/assets/svg/github.svg';
+import Bilibili from '~/assets/svg/bilibili.svg'
+import {mdiArrowTopRight, mdiArrowUpLeft, mdiCodeTags, mdiEmailOutline, mdiFormatQuoteOpen, mdiPencil} from "@mdi/js";
 import {pages} from "~/data/config.js";
-import {mdiArrowUp, mdiMagnify} from "@mdi/js";
-import isMacOS from "~/utils/isMacOS.js";
+import getTotalWordCount from "~/utils/getTotalWordCount.js";
+import getTotalPostCount from "~/utils/getTotalPostCount.js";
+import getTotalPostSize from "~/utils/getTotalPostSize.js";
+import blogrolls from '~/data/blogrolls.json';
 
-const searchModal = ref(false);
-const showBackToTop = ref(false);
-
-function scrollToTop() {
-  window.scrollTo({top: 0})
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', () => {
-    showBackToTop.value = window.scrollY >= window.innerHeight * 0.8;
-  })
-})
+const blogStats = [
+  ['发布了', getTotalPostCount(), '篇文章'],
+  ['容纳了', `${(getTotalWordCount() / 1000).toFixed(1)}K`, '字'],
+  ['链接了', `${blogrolls.length}`, '位伙伴'],
+  ['存在了', (new Date().getFullYear() - 2019), '年'],
+  ['占用了', `${(getTotalPostSize() / 1000).toFixed(1)}`, 'KB']
+]
 </script>
 
-<style lang="scss">
-@use '@/assets/global.scss';
-@use '@/assets/github-light.scss';
+<style lang="scss" scoped>
+@use '@/assets/global';
 
-$navbarHeight: 55px;
-$navbarBottomOffset: 32px;
-
-.flowup-enter-active,
-.flowup-leave-active {
-  transition: all .2s ease;
+.layout-default {
+  max-width: 1200px;
+  margin: global.$navbarHeight + global.$navbarBottomOffset auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
 }
 
-.flowup-enter-from,
-.flowup-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
+.left {
+  width: 25%;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.default-layout {
-  margin-top: $navbarHeight + $navbarBottomOffset;
+.right {
+  width: 75%;
 }
 
-.back-to-top {
+.left section {
   border: 1px solid rgba(0, 0, 0, .1);
   border-radius: 10px;
   transition: all .2s ease;
-  padding: 12px 16px;
-  cursor: pointer;
+  padding: 16px;
   background: white;
-  position: fixed;
-  bottom: 48px;
-  right: 64px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1;
-
-  svg {
-    height: 20px;
-  }
 
   &:hover {
     box-shadow: 0 6px 0 rgba(0, 0, 0, .1);
@@ -95,92 +105,160 @@ $navbarBottomOffset: 32px;
   }
 }
 
-.nav {
+.stats {
   display: flex;
-  align-items: center;
-  background: white;
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
-  padding: 12px 16px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
-  z-index: 100;
-  height: $navbarHeight;
+  flex-direction: column;
+  gap: 8px;
 
-  @media print {
-    display: none;
+  p {
+    margin: 0;
+    font-size: 16px;
   }
 
-  > img {
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    margin-right: 12px;
-  }
-
-  .site-title {
-    font-size: 20px;
-    font-weight: 600;
-
-    a {
-      text-decoration: none;
-      color: black;
-    }
-  }
-
-  .nav-links {
+  .stat {
     display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+    align-items: baseline;
+    gap: 8px;
 
-  .nav-link-inner {
-    text-decoration: none;
-    color: black;
-    padding-bottom: 1px;
-    font-size: 14px;
-    transition: all .2s ease;
-    border-bottom: 2px solid transparent;
-
-    &:hover {
-      border-bottom: 2px solid #b2dfdb;
+    .prefix, .suffix {
+      color: #9b9b9b;
     }
-  }
 
-  .nav-link-inner.router-link-exact-active {
-    border-bottom: 2px solid #009688;
+    .value {
+      font-size: 25px;
+      font-weight: bold;
+      color: #004d40;
+    }
   }
 }
 
-.search-btn {
+.profile {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  padding: 4px 6px;
-  border: 1px solid rgba(0, 0, 0, .1);
-  transition: all .2s ease;
-  line-height: 1;
-  cursor: pointer;
-  border-radius: 5px;
-  gap: 4px;
-  margin-left: 16px;
+  flex-direction: column;
+  padding: 32px 16px 16px;
 
-  svg {
-    height: 16px;
-    width: 16px;
-  }
 
-  .hotkey {
-    font-size: 10px;
+  .footer {
+    margin-top: 16px;
+    font-size: 12px;
     color: #aaa;
+    text-align: center;
+    line-height: 1.5;
   }
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 0 rgba(0, 0, 0, .1);
-    border: 1px solid rgba(#004d40, .8);
+  .avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+
+    .name {
+      margin-top: 16px;
+      font-weight: 500;
+      font-size: 24px;
+    }
+
+    .bio {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+  }
+
+  .social {
+    margin-top: 16px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    width: 60%;
+
+    a {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      color: #000;
+
+      &:hover {
+        svg {
+          opacity: 1;
+        }
+
+        svg.bilibili {
+          fill: #479fd1;
+        }
+      }
+    }
+
+    svg {
+      height: 20px;
+      fill: #000;
+      opacity: .5;
+    }
+  }
+
+  .navigations {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      color: black;
+      text-decoration: none;
+      transition: all .2s ease;
+      padding: 10px 0;
+      border-radius: 20px;
+
+      &:not(.router-link-exact-active):hover {
+        background: #e0f2f1;
+
+        svg {
+          color: #009688;
+        }
+      }
+
+      svg {
+        transition: all .2s ease;
+      }
+    }
+
+    &:hover .router-link-exact-active {
+      background: transparent;
+    }
+
+    .router-link-exact-active {
+      border-radius: 20px;
+      background: #e0f2f1;
+
+      .active-icon {
+        display: block;
+        color: #009688;
+      }
+
+      .inactive-icon {
+        display: none;
+      }
+    }
+
+    :not(.router-link-exact-active) {
+      .active-icon {
+        display: none;
+      }
+
+      .inactive-icon {
+        display: block;
+      }
+    }
   }
 }
 </style>

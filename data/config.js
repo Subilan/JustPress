@@ -22,7 +22,7 @@ export const pages = [
     },
     {
         name: '友链',
-        to: '/pages/friends',
+        to: '/pages/blogroll',
         icon: mdiLinkBoxOutline,
         iconActive: mdiLinkBox
     },

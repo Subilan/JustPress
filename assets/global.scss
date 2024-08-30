@@ -3,6 +3,9 @@ $sansSerifFontWithoutDefault: -apple-system, BlinkMacSystemFont, ui-sans-serif, 
 $sansSerifFont: $sansSerifFontWithoutDefault, sans-serif;
 $monospaceFont: Menlo, "Cascadia Code", "Cascadia Mono", Consolas, $sansSerifFontWithoutDefault, monospace;
 
+$navbarHeight: 55px;
+$navbarBottomOffset: 32px;
+
 html, body {
   margin: 0;
   font-family: $sansSerifFont;
