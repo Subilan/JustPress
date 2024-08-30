@@ -16,7 +16,6 @@
 import getPostContent from "~/utils/getPostContent.js";
 import mediumZoom from "medium-zoom";
 import {mdiClockOutline, mdiFormatTextVariant, mdiShapeOutline} from "@mdi/js";
-import PostFooter from "~/components/creative-commons-license.vue";
 
 const slug = useRoute().params.postname;
 const post = getPostContent(slug.toLowerCase());
@@ -36,6 +35,10 @@ definePageMeta({
 .container {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.content {
+  padding: 16px 0;
 }
 
 .extra {
@@ -64,7 +67,6 @@ definePageMeta({
 article {
   font-size: 16px;
   line-height: 1.8;
-  margin-bottom: 32px;
 
   ul, ol {
     padding-left: 1.2rem;
@@ -247,13 +249,38 @@ article {
   }
 }
 
+p:last-child {
+  margin-bottom: 0;
+}
+
+p:first-child {
+  margin-top: 0;
+}
+
 .notice {
-  padding: 2px 16px;
+  padding: 16px;
   margin: 16px 0;
 
   &.tip {
     background: #e0f2f1;
     border-left: 5px solid #009688;
+    strong {
+      color: #004d40;
+    }
+  }
+
+  &.warning {
+    background: #fff8e1;
+    border-left: 5px solid #ffc107;
+
+    strong {
+      color: #7d2c00;
+    }
+  }
+
+  &.danger {
+    background: #ffebee;
+    border-left: 5px solid #f44336;
   }
 }
 </style>
