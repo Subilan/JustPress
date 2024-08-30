@@ -15,6 +15,10 @@ pre[class^=language-]:hover::before {
   color: rgba(0, 0, 0, .9);
 }
 
+pre[class~=language-yml]::before {
+  content: "yaml"
+}
+
 pre[class~=language-js]::before {
   content: "js"
 }
