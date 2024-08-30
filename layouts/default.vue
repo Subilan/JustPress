@@ -45,8 +45,8 @@
     <div class="right">
       <slot/>
     </div>
+    <default-footer class="absolute"/>
   </div>
-  <default-footer/>
   <back-to-top/>
 </template>
 
@@ -76,10 +76,12 @@ const blogStats = [
 
 .layout-default {
   max-width: 1200px;
-  margin: global.$navbarHeight + global.$navbarBottomOffset auto;
+  margin: global.$navbarHeight + global.$navbarBottomOffset auto 0;
+  padding-bottom: global.$footerHeight + global.$footerMarginTop;
   display: flex;
   align-items: flex-start;
   gap: 28px;
+  position: relative;
 }
 
 .left {

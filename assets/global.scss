@@ -6,6 +6,9 @@ $monospaceFont: Menlo, "Cascadia Code", "Cascadia Mono", Consolas, $sansSerifFon
 $navbarHeight: 55px;
 $navbarBottomOffset: 32px;
 
+$footerHeight: 100px;
+$footerMarginTop: 32px;
+
 html, body {
   margin: 0;
   font-family: $sansSerifFont;
@@ -26,6 +29,10 @@ h2 {
 
 h3 {
   margin: 10px 0;
+}
+
+blockquote:first-child {
+  margin-top: 0;
 }
 
 .spacer {
