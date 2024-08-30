@@ -9,7 +9,6 @@
       </div>
       <div class="content" v-html="post.content"/>
     </article>
-    <post-footer/>
   </div>
 </template>
 
@@ -17,7 +16,7 @@
 import getPostContent from "~/utils/getPostContent.js";
 import mediumZoom from "medium-zoom";
 import {mdiClockOutline, mdiFormatTextVariant, mdiShapeOutline} from "@mdi/js";
-import PostFooter from "~/components/post-footer.vue";
+import PostFooter from "~/components/creative-commons-license.vue";
 
 const slug = useRoute().params.postname;
 const post = getPostContent(slug.toLowerCase());

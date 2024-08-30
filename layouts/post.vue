@@ -3,30 +3,16 @@
   <div class="layout-post">
     <slot/>
   </div>
-  <transition name="flowup">
-    <div @click="scrollToTop" class="back-to-top" v-if="showBackToTop">
-      返回顶部
-      <icon :path="mdiArrowUp"/>
-    </div>
-  </transition>
+  <creative-commons-license/>
+  <default-footer/>
+  <back-to-top/>
 </template>
 
 <script setup>
-import {mdiArrowUp} from "@mdi/js";
 import Navbar from "~/components/navbar.vue";
-
-
-const showBackToTop = ref(false);
-
-function scrollToTop() {
-  window.scrollTo({top: 0})
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', () => {
-    showBackToTop.value = window.scrollY >= window.innerHeight * 0.8;
-  })
-})
+import CreativeCommonsLicense from "~/components/creative-commons-license.vue";
+import DefaultFooter from "~/components/default-footer.vue";
+import BackToTop from "~/components/back-to-top.vue";
 </script>
 
 <style lang="scss">

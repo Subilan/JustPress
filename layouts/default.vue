@@ -46,6 +46,8 @@
       <slot/>
     </div>
   </div>
+  <default-footer/>
+  <back-to-top/>
 </template>
 
 <script setup>
@@ -58,6 +60,7 @@ import getTotalWordCount from "~/utils/getTotalWordCount.js";
 import getTotalPostCount from "~/utils/getTotalPostCount.js";
 import getTotalPostSize from "~/utils/getTotalPostSize.js";
 import blogrolls from '~/data/blogrolls.json';
+import BackToTop from "~/components/back-to-top.vue";
 
 const blogStats = [
   ['发布了', getTotalPostCount(), '篇文章'],
