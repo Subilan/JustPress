@@ -2,7 +2,7 @@
   <transition name="opacity">
     <div class="page-switcher" v-if="model" @click="model = false">
       <transition name="flowfromleft" v-for="(x, i) in pages" appear>
-        <router-link :style="{'transition-delay': 0.1 * i + 's'}" @click="model = false" class="page" :to="x.to">
+        <router-link :style="{'transition-delay': 0.05 * i + 's'}" @click="model = false" class="page" :to="x.to">
           <icon :path="x.icon" class="inactive-icon"/>
           <icon :path="x.iconActive" class="active-icon"/>
           {{ x.name }}
@@ -72,8 +72,15 @@ const model = defineModel();
   }
 
   &.router-link-exact-active {
+    background: #009688;
+    color: white;
+
     .inactive-icon {
       display: none;
+    }
+
+    svg {
+      color: white;
     }
   }
 
