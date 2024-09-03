@@ -246,6 +246,7 @@ article {
 
   a.external-link {
     margin-right: 3px;
+
     &::after {
       content: '↗';
       color: #aaa;
@@ -276,6 +277,7 @@ p:first-child {
   &.tip {
     background: #e0f2f1;
     border-left: 5px solid #009688;
+
     strong {
       color: #004d40;
     }
