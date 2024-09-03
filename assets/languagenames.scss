@@ -138,3 +138,7 @@ pre[class~=language-sql]::before{
 pre[class~=language-shell]::before{
   content: "sh";
 }
+
+pre[class~=language-swift]::before {
+  content: "swift";
+}
