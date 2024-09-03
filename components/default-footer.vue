@@ -49,12 +49,16 @@ footer {
     }
   }
 
-  &:not(.absolute) .inner {
+  &:not(.default-layout-specific) .inner {
     max-width: 800px;
     margin: 0 auto;
+
+    @media (max-width: 1000px) {
+      margin: 0 20px;
+    }
   }
 
-  &.absolute {
+  &.default-layout-specific {
     @media (min-width: 1000px) {
       position: absolute;
     }

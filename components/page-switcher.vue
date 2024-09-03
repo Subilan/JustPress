@@ -15,8 +15,6 @@
 <script setup>
 import {pages} from '~/data/config.js'
 
-console.log(pages)
-
 const model = defineModel();
 </script>
 

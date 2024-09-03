@@ -45,7 +45,7 @@
     <div class="right">
       <slot/>
     </div>
-    <default-footer class="absolute"/>
+    <default-footer class="default-layout-specific"/>
   </div>
   <back-to-top/>
 </template>

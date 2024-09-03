@@ -2,14 +2,21 @@
   <div class="create-commons-license">
     <div class="title">
       本博客的原创内容采用 CC BY-SA 4.0 协议授权
-      <img alt="cc" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
-      <img alt="by" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
-      <img alt="sa" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1">
+      <div class="icons">
+        <img alt="cc" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+        <img alt="by" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+        <img alt="sa" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1">
+      </div>
     </div>
-    <p><strong>欢迎评论、指正或者转载。</strong>转载需遵守 CC BY-SA 4.0（署名—相同方式共享）协议。可前往 GitHub 仓库发布 Issue 进行评论（可带上 comment 的 tag 以区分）。</p>
+    <p><strong>欢迎评论、指正或者转载。</strong>转载需遵守 CC BY-SA 4.0（署名—相同方式共享）协议。可前往 GitHub 仓库发布
+      Issue 进行评论（可带上 comment 的 tag 以区分）。</p>
     <div class="links">
-      <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">在 CreativeCommons 上查看协议 <icon :path="mdiArrowTopRight"/></a>
-      <a href="https://github.com/Subilan/Blog/issues" target="_blank">打开 Issue 页面 <icon :path="mdiArrowTopRight"/></a>
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">在 CreativeCommons 上查看协议
+        <icon :path="mdiArrowTopRight"/>
+      </a>
+      <a href="https://github.com/Subilan/Blog/issues" target="_blank">打开 Issue 页面
+        <icon :path="mdiArrowTopRight"/>
+      </a>
     </div>
   </div>
 </template>
@@ -31,6 +38,10 @@ import {mdiArrowTopRight} from "@mdi/js";
   max-width: 800px;
   margin: 0 auto;
 
+  @media (max-width: 840px) {
+    margin: 0 20px;
+  }
+
   &:hover {
     border: 1px solid rgba(#004d40, .8);
   }
@@ -40,6 +51,11 @@ import {mdiArrowTopRight} from "@mdi/js";
     align-items: center;
     justify-content: flex-end;
     gap: 16px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
 
   a {
@@ -54,6 +70,11 @@ import {mdiArrowTopRight} from "@mdi/js";
     align-items: center;
     line-height: 1;
 
+    @media (max-width: 768px) {
+      justify-content: center;
+    }
+
+
     svg {
       height: 16px;
     }
@@ -67,8 +88,18 @@ import {mdiArrowTopRight} from "@mdi/js";
   }
 
   .title {
-    img {
-      height: 22px;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .icons {
+      img {
+        height: 22px;
+      }
+      display: flex;
+      gap: 8px;
     }
 
     display: flex;
