@@ -74,7 +74,6 @@ import {mdiArrowTopRight} from "@mdi/js";
       justify-content: center;
     }
 
-
     svg {
       height: 16px;
     }
@@ -88,6 +87,12 @@ import {mdiArrowTopRight} from "@mdi/js";
   }
 
   .title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: bold;
+
     @media (max-width: 768px) {
       display: flex;
       flex-direction: column;
@@ -95,18 +100,13 @@ import {mdiArrowTopRight} from "@mdi/js";
     }
 
     .icons {
+      display: flex;
+      gap: 8px;
+
       img {
         height: 22px;
       }
-      display: flex;
-      gap: 8px;
     }
-
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 20px;
-    font-weight: bold;
   }
 
   p {
