@@ -130,3 +130,7 @@ pre[class~=language-bash]::before {
 pre[class~=language-php]::before {
   content: "php"
 }
+
+pre[class~=language-sql]::before{
+  content: "sql";
+}
