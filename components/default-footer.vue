@@ -3,8 +3,10 @@
     <div class="inner">
       <span>&copy; 2019-{{ new Date().getFullYear() }} Subilan's Blog<br/><small>Built with Nuxt 3 and 🤔</small></span>
       <div class="spacer"/>
-      <WrittenByHuman/>
-      <img alt="creative-commons" src="https://mirrors.creativecommons.org/presskit/logos/cc.logo.svg"/>
+      <div class="icons">
+        <WrittenByHuman/>
+        <img alt="creative-commons" src="https://mirrors.creativecommons.org/presskit/logos/cc.logo.svg"/>
+      </div>
     </div>
   </footer>
 </template>
@@ -24,10 +26,27 @@ footer {
   box-sizing: border-box;
   bottom: 0;
 
+  @media (max-width: 768px) {
+    height: unset;
+    padding: 24px 0;
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
   .inner {
     display: flex;
     align-items: center;
     gap: 16px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
   }
 
   &:not(.absolute) .inner {
@@ -36,7 +55,9 @@ footer {
   }
 
   &.absolute {
-    position: absolute;
+    @media (min-width: 1000px) {
+      position: absolute;
+    }
   }
 
   span {

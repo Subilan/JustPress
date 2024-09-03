@@ -10,7 +10,7 @@ code[class*="language-"] {
   text-shadow: none;
   direction: ltr;
   text-align: left;
-  white-space: pre-line;
+  white-space: pre;
   word-spacing: normal;
   word-break: normal;
   line-height: 1.5;
@@ -30,7 +30,7 @@ code[class*="language-"] {
 pre[class*="language-"] {
   padding: 1em;
   margin: .5em 0;
-  overflow: auto;
+
   background: #f6f8fa;
 }
 .notice pre[class*="language-"] {

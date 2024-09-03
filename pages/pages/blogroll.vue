@@ -76,6 +76,12 @@ import blogrolls from '~/data/blogrolls.json'
   align-items: center;
   gap: 12px;
 
+  @media (max-width: 768px) {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .blogroll {
     text-decoration: none;
     color: black;

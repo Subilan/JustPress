@@ -67,6 +67,7 @@ definePageMeta({
 article {
   font-size: 16px;
   line-height: 1.8;
+  word-break: break-word;
 
   ul, ol {
     padding-left: 1.2rem;
@@ -107,12 +108,14 @@ article {
     position: relative;
     padding: 1.25rem 1.5rem;
     margin: .85rem 0;
-    overflow: auto;
 
     code {
       padding: 0;
       background: transparent;
       border-radius: 0;
+      overflow: auto;
+      max-width: 100%;
+      display: block;
     }
   }
 

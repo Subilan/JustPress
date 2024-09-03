@@ -32,31 +32,9 @@ import BackToTop from "~/components/back-to-top.vue";
 
 .layout-post {
   margin-top: global.$navbarHeight + global.$navbarBottomOffset;
-}
 
-.back-to-top {
-  border: 1px solid rgba(0, 0, 0, .1);
-  border-radius: 10px;
-  transition: all .2s ease;
-  padding: 12px 16px;
-  cursor: pointer;
-  background: white;
-  position: fixed;
-  bottom: 48px;
-  right: 64px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1;
-
-  svg {
-    height: 20px;
-  }
-
-  &:hover {
-    box-shadow: 0 6px 0 rgba(0, 0, 0, .1);
-    border: 1px solid rgba(#004d40, .8);
-    transform: translateY(-4px);
+  @media (max-width: 1000px) {
+    padding: 0 20px;
   }
 }
 </style>

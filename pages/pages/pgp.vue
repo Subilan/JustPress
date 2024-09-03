@@ -6,7 +6,7 @@
       <li>Valid Until — 2027/01/01</li>
       <li>User ID — Subilan &lt;<a href="mailto:christophersubilan@gmail.com">christophersubilan@gmail.com</a>&gt;</li>
     </ul>
-    <pre class="language-">
+    <pre class="language-" style="white-space: pre-line">
       <code v-text="pgp"/>
     </pre>
   </article>

@@ -95,7 +95,7 @@ onUnmounted(() => {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, .6);
+  background: rgba(0, 0, 0, .8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,6 +110,11 @@ onUnmounted(() => {
   width: 35%;
   border-radius: 10px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, .2);
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 
   input {
     outline: none;
@@ -148,6 +153,11 @@ onUnmounted(() => {
   border-radius: 10px;
   cursor: pointer;
 
+
+  @media (max-width: 768px) {
+    padding: 16px 0;
+  }
+
   &:hover {
     background: #e0f2f1;
     border: 1px solid rgba(#004d40, .8);
@@ -174,6 +184,12 @@ onUnmounted(() => {
       content: '·';
       margin: 0 8px;
     }
+
+    @media (max-width: 768px) {
+      span:not(:last-child)::after {
+        margin: 0 4px;
+      }
+    }
   }
 
   .data {
@@ -182,6 +198,10 @@ onUnmounted(() => {
     gap: 16px;
     font-size: 14px;
     font-family: global.$monospaceFont;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
 
     .bg {
       background: #e0f2f1;

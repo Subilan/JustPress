@@ -1,5 +1,8 @@
 <template>
   <nav class="nav">
+    <div class="mobile-menu-btn" @click="pageSwitcherModel = !pageSwitcherModel">
+      <icon :path="mdiMenu"/>
+    </div>
     <img src="~/assets/avatar.jpg" alt="avatar"/>
     <span class="site-title">
       <router-link to="/">Subilan's Blog</router-link>
@@ -15,20 +18,30 @@
         <router-link :to="x.to" class="nav-link-inner">{{ x.name }}</router-link>
       </div>
     </div>
+    <div class="mobile-search-btn" @click="searchModal = true">
+      <icon :path="mdiMagnify"/>
+    </div>
   </nav>
   <search v-model="searchModal"/>
+  <page-switcher v-model="pageSwitcherModel"/>
 </template>
 
 <script setup lang="ts">
-import {mdiMagnify} from "@mdi/js";
+import {mdiMagnify, mdiMenu} from "@mdi/js";
 import {pages} from "~/data/config";
 import isMacOS from "~/utils/isMacOS";
 
 const searchModal = ref(false);
+const pageSwitcherModel = ref(false);
 </script>
 
 <style lang="scss">
 @use "@/assets/global";
+
+.mobile-menu-btn {
+  margin-right: 16px;
+  cursor: pointer;
+}
 
 .nav {
   display: flex;
@@ -69,6 +82,10 @@ const searchModal = ref(false);
     display: flex;
     align-items: center;
     gap: 16px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .nav-link-inner {
@@ -89,6 +106,14 @@ const searchModal = ref(false);
   }
 }
 
+.mobile-search-btn {
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
 .search-btn {
   display: flex;
   align-items: center;
@@ -101,6 +126,10 @@ const searchModal = ref(false);
   border-radius: 5px;
   gap: 4px;
   margin-left: 16px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   svg {
     height: 16px;

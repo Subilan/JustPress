@@ -82,6 +82,18 @@ const blogStats = [
   align-items: flex-start;
   gap: 28px;
   position: relative;
+
+  @media (max-width: 1300px) {
+    max-width: 800px;
+  }
+
+  @media (max-width: 1000px) {
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .left {
@@ -90,10 +102,18 @@ const blogStats = [
   align-items: stretch;
   flex-direction: column;
   gap: 28px;
+
+  @media (max-width: 1300px) {
+    display: none;
+  }
 }
 
 .right {
   width: 75%;
+
+  @media (max-width: 1300px) {
+    width: 100%;
+  }
 }
 
 .left section {
