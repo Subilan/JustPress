@@ -60,6 +60,10 @@ function getIconForCategory(category) {
       align-items: center;
       gap: 2px;
 
+      @media (max-width: 768px) {
+        display: none;
+      }
+
       svg {
         height: 14px;
         width: 14px;
