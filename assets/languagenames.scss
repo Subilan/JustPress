@@ -134,3 +134,7 @@ pre[class~=language-php]::before {
 pre[class~=language-sql]::before{
   content: "sql";
 }
+
+pre[class~=language-shell]::before{
+  content: "sh";
+}
