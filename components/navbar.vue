@@ -41,6 +41,10 @@ const pageSwitcherModel = ref(false);
 .mobile-menu-btn {
   margin-right: 16px;
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .nav {

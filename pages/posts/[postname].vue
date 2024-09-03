@@ -69,11 +69,20 @@ article {
   line-height: 1.8;
   word-break: break-word;
 
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
   ul, ol {
     padding-left: 1.2rem;
   }
 
-  h1, h2, h3 {
+  h1 {
+    line-height: 1.3;
+    padding-bottom: 8px;
+  }
+
+  h2, h3 {
     line-height: 1.4;
   }
 
