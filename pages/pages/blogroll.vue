@@ -90,6 +90,7 @@ import blogrolls from '~/data/blogrolls.json'
     cursor: pointer;
     background-position: center;
     background-size: cover;
+    min-height: 55px;
 
     &:hover {
       transform: translateY(-4px);
