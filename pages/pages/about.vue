@@ -13,7 +13,7 @@
       </details>
       <details>
         <summary><span>博客：关于博客程序</span></summary>
-        <p><em>2019 年，博客使用的是 VuePress，后按照 VuePress 的主题风格使用 Vue 3 构建了一个版本。目前使用的是 Nuxt 3 构建的（代号）（JustPress。</em></p>
+        <p><em>2019 年，博客使用的是 VuePress，后按照 VuePress 的主题风格使用 Vue 3 构建了一个版本。目前使用的是 Nuxt 3 构建的（代号）JustPress。</em></p>
         <p>从 2024 年 9 月开始，这个博客开始使用 Nuxt 3 构建的 JustPress。目前 JustPress 只是一个代号，其功能上与博客本身的内容有着高度的耦合，且依赖于本地数据库，因此不适合其它用户使用。当然，如果你有着 DIY 的兴趣，也可以从源码出发进行修改自行使用，它是以 MIT 协议开源的。</p>
       </details>
       <details>
