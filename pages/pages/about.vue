@@ -9,7 +9,7 @@
         <summary><span>博客：关于博客的过往</span></summary>
         <p>最开始<em>正式</em>接触博客（个人网站）这种信息媒介是 2016 年，当时使用的是
           WordPress，搭配上面的预制主题。并没有琢磨出博客的意义所在。后来先后更换了 Hugo、Hexo、Typecho（用得最久），经历了私有主机商的删库跑路之后，于
-          2019 年开始使用 VuePress 搭建静态博客，并在 DIY 博客的路上一去不复返。</p>
+          2019 年开始使用 VuePress 搭建静态博客，并开始 DIY 博客。</p>
       </details>
       <details>
         <summary><span>博客：关于博客程序</span></summary>
@@ -19,7 +19,7 @@
       <details>
         <summary><span>个人：关于个人兴趣</span></summary>
         <ul>
-          <li>Minecraft 热爱者，对其周边的一切 DIY 的开发事务保持好奇。</li>
+          <li>Minecraft 热爱者，对其周边的开发生态保持关注。</li>
           <li>非专业的摄影（对我来说，准确地叫<em>拍照</em>）爱好者，喜欢按照自己的理念进行取景。</li>
           <li>学习日语中，不过<em>并不是</em>因为二次元，是因为一样非常本真的对语言的兴趣。</li>
           <li>尝试各种编程语言，以及将各种有趣的设计原型变成现实。</li>
