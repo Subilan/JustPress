@@ -59,7 +59,7 @@ function render(content) {
     const postDigests = [];
     const postSearch = [];
 
-    for (let type of ['pages', 'posts']) {
+    for (let type of ['posts']) {
         const filenames = await fs.readdir(`${dataDir}/${type}`);
         for (let filename of filenames) {
             const targetPath = `${dataDir}/${type}/${filename}`;
@@ -92,10 +92,10 @@ function render(content) {
             };
 
             switch (type) {
-                case 'pages': {
-                    pageContents.push(res);
-                    break;
-                }
+                // case 'pages': {
+                //     pageContents.push(res);
+                //     break;
+                // }
 
                 case 'posts': {
                     postContents.push(res);
@@ -128,7 +128,7 @@ function render(content) {
     }
 
     await fs.writeFile(`${dataDir}/posts.json`, JSON.stringify(postContents));
-    await fs.writeFile(`${dataDir}/pages.json`, JSON.stringify(pageContents));
+    // await fs.writeFile(`${dataDir}/pages.json`, JSON.stringify(pageContents));
     await fs.writeFile(`${dataDir}/postdigests.json`, JSON.stringify(postDigests));
     await fs.writeFile(`${dataDir}/postsearch.json`, JSON.stringify(postSearch));
 
@@ -137,9 +137,9 @@ function render(content) {
     console.log(`OK: built ${postContents.length} posts and ${pageContents.length} pages in ${end.getTime() - start.getTime()}ms.`)
 
     const postStat = await fs.stat(`${dataDir}/posts.json`);
-    const pageStat = await fs.stat(`${dataDir}/pages.json`);
+    // const pageStat = await fs.stat(`${dataDir}/pages.json`);
     const postdigestsStat = await fs.stat(`${dataDir}/postdigests.json`);
     const postsearchStat = await fs.stat(`${dataDir}/postsearch.json`);
 
-    console.log(`Size: posts.json=${postStat.size / 1000000} MB, pages.json=${pageStat.size / 1000000} MB, postdigests.json=${postdigestsStat.size / 1000000} MB, postsearch.json=${postsearchStat.size / 1000000} MB`)
+    console.log(`Size: posts.json=${postStat.size / 1000000} MB, postdigests.json=${postdigestsStat.size / 1000000} MB, postsearch.json=${postsearchStat.size / 1000000} MB`)
 })();
